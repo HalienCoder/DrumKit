@@ -5,11 +5,13 @@ for (var i=0; i<n; i++){
     document.querySelectorAll("button")[i].addEventListener("click", function (event){
         var buttonInnerHtml  = this.innerHTML;
        makesound(buttonInnerHtml);
+       buttonAnim(buttonInnerHtml)
     });
 };
 
 document.addEventListener("keydown", function (event){
     makesound(event.key);
+    buttonAnim(event.key);
 })
 
 function makesound(key){
@@ -46,9 +48,6 @@ function makesound(key){
     }
 }
 
-// var sound=  new Audio ("./sounds/tom-1.mp3");
-// sound.play();
-
 function HouseKeeper (yearsOfExp, name, age, types ){
     this.yearsOfExp= yearsOfExp;
     this.name= name;
@@ -59,5 +58,15 @@ function HouseKeeper (yearsOfExp, name, age, types ){
     }
 }
 
+
+
+function buttonAnim (currKey){
+   var activeButton = document.querySelector("."+currKey);
+   activeButton.classList.add("pressed");
+
+   setTimeout(function(){
+    activeButton.classList.remove("pressed");
+   }, 100);
+}
 var hh1 = new HouseKeeper (12, "jamie", 25, ['room','table']);
 // hh1.clean();
